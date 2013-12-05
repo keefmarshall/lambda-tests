@@ -37,7 +37,7 @@ public class MapFileParser
 		this.filename = filename;
 	}
 	
-	public void readMapFile(final Consumer<Map<String, String>> processor) throws IOException 
+	public void readMapFile(Consumer<Map<String, String>> processor) throws IOException 
 	{
 		// Java 7 try-with-resources syntax
 		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) 
