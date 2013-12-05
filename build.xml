@@ -1,0 +1,46 @@
+<project name="lambda-tests" basedir=".">
+	
+	<property name="src.main" value="src/main/java"/>
+	<property name="src.test" value="src/test/java"/>
+	
+	<property name="build.classes" value="build/main/classes"/>
+	<property name="build.test" value="build/test"/>
+	<property name="build.test.classes" value="build/test/classes"/>
+	
+	<target name='init'>
+		<mkdir dir="${build.classes}"/>
+		<mkdir dir="${build.test.classes}"/>
+		<mkdir dir="${build.test}/reports"/>
+	</target>
+
+	<target name="compile" depends='init'>
+		<javac srcdir='${src.main}' destdir='${build.classes}'/>
+	</target>
+
+	<target name="compile-tests" depends='compile'>
+		<javac srcdir='${src.test}' destdir='${build.test.classes}'>
+			<classpath>
+				<pathelement location="lib/junit-4.10.jar" />
+				<pathelement location="${build.classes}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="test" depends="compile-tests">
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath>
+				<pathelement location="${build.classes}"/>
+				<pathelement location="${build.test.classes}"/>
+				<pathelement location="lib/junit-4.10.jar" />
+			</classpath>
+
+			<formatter type="plain"/>
+
+			<batchtest fork="yes" todir="${build.test}/reports">
+				<fileset dir="${src.test}">
+					<include name="**/*Test.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+</project>
