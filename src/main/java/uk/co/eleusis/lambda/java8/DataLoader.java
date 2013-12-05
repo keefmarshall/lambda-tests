@@ -27,7 +27,7 @@ public class DataLoader
 			final Collection<Map<String, String>> database) throws IOException
 	{
 		MapFileParser parser = new MapFileParser(filename);
-		parser.readMapFile( (map) -> { database.add(map); } );
+		parser.readMapFile( map -> database.add(map) );
 	}
 
 	/**
