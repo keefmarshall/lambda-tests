@@ -1,4 +1,4 @@
-<project name="lambda-tests" basedir=".">
+<project name="lambda-tests" basedir="." default="test">
 	
 	<property name="src.main" value="src/main/java"/>
 	<property name="src.test" value="src/test/java"/>
