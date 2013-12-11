@@ -10,6 +10,7 @@ import org.junit.Test;
 
 public class DataLoaderTest
 {
+	private final static String TEST_FILENAME = "src/test/resources/mapfile";
 
 	@Test
 	public void testLoadMapsIntoDatabase() throws Exception
@@ -18,13 +19,22 @@ public class DataLoaderTest
 		
 		// pseudo-database, we're just using a list for now!
 		List<Map<String, String>> database = new ArrayList<>();
-		String filename = "src/test/resources/mapfile";
 		
-		loader.loadMapsIntoDatabase(filename, database);
+		loader.loadMapsIntoDatabase(TEST_FILENAME, database);
 		
 		assertEquals(16, database.size());
 		assertEquals("val4", database.get(1).get("key1"));
 	}
 
-
+	@Test
+	public void testFilterMapsByProperty() throws Exception
+	{
+		DataLoader loader = new DataLoader();
+		
+		List<Map<String, String>> filtered = loader.filterMapsByProperty(TEST_FILENAME);
+		
+		assertNotNull(filtered);
+		assertEquals(5, filtered.size());
+		assertEquals("val16", filtered.get(1).get("key1"));
+	}
 }
