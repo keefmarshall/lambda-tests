@@ -42,7 +42,7 @@ public class DataLoader
 	{
 		final List<Map<String, String>> filteredList = new ArrayList<>();
 		MapFileParser parser = new MapFileParser(filename);
-		parser.readMapFile((map) -> {
+		parser.readMapFile(map -> {
 				if (map.containsKey("include"))
 				{
 					filteredList.add(map);
