@@ -42,7 +42,7 @@ public class MapFileParser
 	
 	public void readMapFile(Consumer<Map<String, String>> processor) throws IOException 
 	{
-		// Java 7 try-with-resources syntax
+		// Java 7 try-with-resources syntax and NIO
 		Path file = Paths.get(filename);
 		try (BufferedReader reader = Files.newBufferedReader(file, StandardCharsets.UTF_8)) 
 		{

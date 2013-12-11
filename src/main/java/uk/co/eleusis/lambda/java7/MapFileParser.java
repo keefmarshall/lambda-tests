@@ -1,8 +1,11 @@
 package uk.co.eleusis.lambda.java7;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,8 +37,9 @@ public class MapFileParser
 	
 	public void readMapFile(MapProcessor processor) throws IOException 
 	{
-		// Java 7 try-with-resources syntax
-		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) 
+		// Java 7 try-with-resources syntax and NIO
+		Path file = Paths.get(filename);
+		try (BufferedReader reader = Files.newBufferedReader(file, StandardCharsets.UTF_8)) 
 		{
 			String line = reader.readLine();
 			while (line != null)
